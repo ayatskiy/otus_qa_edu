@@ -6,4 +6,5 @@ import org.aeonbits.owner.Config;
 public interface OtusWebsiteConfig extends Config {
     String url();
     String title();
+    String url_lk();
 }

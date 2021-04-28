@@ -14,7 +14,7 @@ import org.apache.logging.log4j.Logger;
 
 public class Lesson3 {
 
-    private OtusWebsiteConfig otusWebsite = ConfigFactory.create(OtusWebsiteConfig.class);
+    private final OtusWebsiteConfig otusWebsite = ConfigFactory.create(OtusWebsiteConfig.class);
     private Logger logger = LogManager.getLogger(Lesson3.class);
     private static WebDriver driver;
 
