@@ -24,28 +24,6 @@ public class Lesson6 {
     private Logger logger = LogManager.getLogger(Lesson6.class);
     private static WebDriver driver;
 
-    private WebElement getElement(By locator){
-        return new WebDriverWait(driver, 20).until(ExpectedConditions.visibilityOfElementLocated(locator));
-    }
-
-    private void authOtus()
-    {
-        getElement(By.xpath("//button[contains(@class, 'header2__auth')]")).click();
-        getElement(By.xpath("//input[@placeholder='Электронная почта'][contains(@class, 'email-input')]")).sendKeys(usersData.login());
-        getElement(By.xpath("//input[contains(@class, 'psw-input')]")).sendKeys(usersData.password());
-        getElement(By.xpath("//div[contains(@class, 'line_relative')]/button[@type='submit']")).submit();
-        logger.info("Авторизация пользователем с логином \"{}\" прошла успешно", usersData.login());
-    }
-
-    private void  jumpToOtusLK() throws InterruptedException {
-        WebElement icon = getElement(By.cssSelector(".ic-blog-default-avatar"));
-        Actions actions = new Actions(driver);
-        actions.moveToElement(icon).build().perform();
-//        Thread.sleep(5000);
-        driver.get(otusWebsite.url_lk());
-        logger.info("Открыт личный кабинет");
-    }
-
     @BeforeEach
     public void StartUp() {
         WebDriverManager.chromedriver().setup();
@@ -124,5 +102,26 @@ public class Lesson6 {
                 () -> Assertions.assertEquals(usersData.engLevel(), driver.findElement(By.cssSelector("div.container__col_12:nth-child(3) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(3) > div:nth-child(2) > div:nth-child(1) > label:nth-child(1) > div:nth-child(2)")).getText())
         );
         Thread.sleep(10000);
+    }
+
+    private WebElement getElement(By locator){
+        return new WebDriverWait(driver, 20).until(ExpectedConditions.visibilityOfElementLocated(locator));
+    }
+
+    private void authOtus()
+    {
+        getElement(By.xpath("//button[contains(@class, 'header2__auth')]")).click();
+        getElement(By.xpath("//input[@placeholder='Электронная почта'][contains(@class, 'email-input')]")).sendKeys(usersData.login());
+        getElement(By.xpath("//input[contains(@class, 'psw-input')]")).sendKeys(usersData.password());
+        getElement(By.xpath("//div[contains(@class, 'line_relative')]/button[@type='submit']")).submit();
+        logger.info("Авторизация пользователем с логином \"{}\" прошла успешно", usersData.login());
+    }
+
+    private void  jumpToOtusLK() throws InterruptedException {
+        WebElement icon = getElement(By.cssSelector(".ic-blog-default-avatar"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(icon).build().perform();
+        driver.get(otusWebsite.url_lk());
+        logger.info("Открыт личный кабинет");
     }
 }
