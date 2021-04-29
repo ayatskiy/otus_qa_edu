@@ -59,6 +59,17 @@ public class Lesson7 {
     }
 
     @Test
+    public void addAuthCookie() throws InterruptedException {
+        driver.get("https://otus.ru/");
+        Cookie cookie = new Cookie("auth_token", "ef-cae8TpJnKQw34_OMbvg");
+        Cookie cookie1 = new Cookie("auth_token_expires", "1714213424");
+        driver.manage().addCookie(cookie);
+        driver.manage().addCookie(cookie1);
+        driver.navigate().refresh();
+        logger.info(driver.manage().getCookies());
+    }
+
+    @Test
     public void waitSample(){
         driver.manage().timeouts().implicitlyWait(30,TimeUnit.SECONDS);
         driver.manage().timeouts().pageLoadTimeout(0,TimeUnit.SECONDS);
@@ -105,6 +116,6 @@ public class Lesson7 {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("headless");
         driver = new ChromeDriver(options);
-
+        driver.get("https://otus.ru/");
     }
 }
