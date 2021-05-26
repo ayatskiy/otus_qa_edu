@@ -1,0 +1,7 @@
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <comment>This is a comment</comment>
+    <entry key="prop1">icon1.jpg</entry>
+    <entry key="prop2">icon2.jpg</entry>
+    <entry key="prop3">icon3.jpg</entry>
+</properties>

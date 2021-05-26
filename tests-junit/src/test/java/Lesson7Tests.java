@@ -15,14 +15,15 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.util.concurrent.TimeUnit;
 
-public class Lesson7 {
+class Lesson7Tests {
+
     protected static WebDriver driver;
-    private Logger logger = LogManager.getLogger(Lesson7.class);
+    private final Logger logger = LogManager.getLogger(Lesson7Tests.class);
 
     @BeforeEach
     public void StartUp() {
         WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
+//        driver = new ChromeDriver();
         logger.info("Драйвер поднят, браузер готов к работе");
     }
 
@@ -33,7 +34,7 @@ public class Lesson7 {
     }
 
     @Test
-    public void manageCookie(){
+    void manageCookie(){
         driver.get("https://otus.ru/");
         //Добавить Cookie#1 с параметром Otus1 и значением Value1
         driver.manage().addCookie(new Cookie("Otus1", "Value1"));
@@ -58,26 +59,26 @@ public class Lesson7 {
         Assertions.assertEquals(0, driver.manage().getCookies().size());
     }
 
-    @Test
-    public void addAuthCookie() throws InterruptedException {
-        driver.get("https://otus.ru/");
-        Cookie cookie = new Cookie("auth_token", "ef-cae8TpJnKQw34_OMbvg");
-        Cookie cookie1 = new Cookie("auth_token_expires", "1714213424");
-        driver.manage().addCookie(cookie);
-        driver.manage().addCookie(cookie1);
-        driver.navigate().refresh();
-        logger.info(driver.manage().getCookies());
-    }
+//    @Test
+//    void addAuthCookie() throws {
+//        driver.get("https://otus.ru/");
+//        Cookie cookie = new Cookie("auth_token", "ef-cae8TpJnKQw34_OMbvg");
+//        Cookie cookie1 = new Cookie("auth_token_expires", "1714213424");
+//        driver.manage().addCookie(cookie);
+//        driver.manage().addCookie(cookie1);
+//        driver.navigate().refresh();
+//        logger.info(driver.manage().getCookies());
+//    }
 
     @Test
-    public void waitSample(){
+    void waitSample(){
         driver.manage().timeouts().implicitlyWait(30,TimeUnit.SECONDS);
         driver.manage().timeouts().pageLoadTimeout(0,TimeUnit.SECONDS);
         driver.get("https://otus.ru/");
     }
 
     @Test
-    public void windows() throws InterruptedException {
+    void windows() throws InterruptedException {
         //Группа А: Запустить тест в полном окне («не киоск»), получить его размер
         driver.manage().window().maximize();
         logger.info(driver.manage().window().getSize());
@@ -112,7 +113,7 @@ public class Lesson7 {
     }
 
     @Test
-    public void headless(){
+    void headless(){
         ChromeOptions options = new ChromeOptions();
         options.addArguments("headless");
         driver = new ChromeDriver(options);

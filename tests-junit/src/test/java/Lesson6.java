@@ -117,7 +117,7 @@ public class Lesson6 {
         logger.info("Авторизация пользователем с логином \"{}\" прошла успешно", usersData.login());
     }
 
-    private void  jumpToOtusLK() throws InterruptedException {
+    private void  jumpToOtusLK() {
         WebElement icon = getElement(By.cssSelector(".ic-blog-default-avatar"));
         Actions actions = new Actions(driver);
         actions.moveToElement(icon).build().perform();
